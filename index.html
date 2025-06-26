@@ -381,24 +381,31 @@
 
  
  <section id="contact" class="contact-form">
-    <h2>Contact Us</h2>
-     <form id="contactForm" action="https://formsubmit.co/snehanv777@gmail.com" method="POST">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" name="name" placeholder="Your Name" required="">
+  <h2>Contact Us</h2>
 
-      <label for="email">Your Email</label>
-      <input type="email" id="email" name="email" placeholder="Your Email" required="">
+  <form action="https://formsubmit.co/snehanv777@gmail.com" method="POST" enctype="multipart/form-data">
+    <label for="name">Your Name</label>
+    <input type="text" id="name" name="name" placeholder="Your Name" required>
 
-      <label for="message">Your Message</label>
-      <textarea id="message" name="message" rows="5" placeholder="Your Message" required=""></textarea>
- <!-- Redirect after submission -->
-  <input type="hidden" name="_next" value="thankyou.html">
+    <label for="email">Your Email</label>
+    <input type="email" id="email" name="email" placeholder="Your Email" required>
 
-      <button type="submit">Send Message</button>
-    </form>
-<div id="thankYouMessage" style="display:none; margin-top: 10px; color: green;">
-  Thank you for submitting!
-</div>
+    <label for="message">Your Message</label>
+    <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+
+    <label for="file">Upload File</label>
+    <input type="file" id="file" name="attachment">
+
+    <!-- Redirect after submission -->
+    <input type="hidden" name="_next" value="https://snehavenkatesh16.github.io/Project/thankyou.html">
+
+    <button type="submit">Send Message</button>
+  </form>
+
+  <div id="thankYouMessage" style="display:none; margin-top: 10px; color: green;">
+    Thank you for submitting!
+  </div>
+</section>
 
 <script>
   function submitForm(event) {
