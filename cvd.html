@@ -378,49 +378,34 @@
     icon.textContent = isOpen ? '➖' : '➕';
   }
 </script>
- <section>
- <h2>Contact Us</h2>
-  
-  <form id="contact-form" action="https://formsubmit.co/snehanv777@gmail.com" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required><br><br>
-    <input type="email" name="email" placeholder="Your Email" required><br><br>
-    <textarea name="message" placeholder="Your Message" rows="5" required></textarea><br><br>
 
-    <!-- Optional FormSubmit settings -->
-    <input type="hidden" name="_captcha" value="false">
+ 
+<section id="contact" class="contact-form">
+  <h2>Contact Us</h2>
 
-    <button type="submit">Send</button>
+  <form action="https://formsubmit.co/snehanv777@gmail.com" method="POST" enctype="multipart/form-data">
+    <label for="name">Your Name</label>
+    <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+    <label for="email">Your Email</label>
+    <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+    <label for="message">Your Message</label>
+    <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+
+    <label for="file">Upload File</label>
+    <input type="file" id="file" name="attachment">
+
+    <!-- Redirect after submission -->
+    <input type="hidden" name="_next" value="https://snehavenkatesh16.github.io/Project/thankyou.html">
+
+    <button type="submit">Send Message</button>
   </form>
 
-  <div id="thank-you-msg">
-    <h2>🎉 Thank you for submitting!</h2>
-    <p>We have received your message.</p>
+  <div id="thankYouMessage" style="display:none; margin-top: 10px; color: green;">
+    Thank you for submitting!
   </div>
-
-  <script>
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
-      e.preventDefault(); // Stop default form action
-      const form = this;
-
-      fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-      }).then(response => {
-        if (response.ok) {
-          form.style.display = "none";
-          document.getElementById('thank-you-msg').style.display = "block";
-        } else {
-          alert("Something went wrong. Please try again.");
-        }
-      }).catch(error => {
-        console.error(error);
-        alert("Error submitting form.");
-      });
-    });
-  </script>
-
-</body>
-</html>
+</section>
 
 <script>
   function submitForm(event) {
@@ -430,6 +415,7 @@
   }
 </script>
   </section>
+
 
   <script>
     // Animated counter
@@ -449,7 +435,160 @@
       if (!isVisible) answers[index].style.display = "block";
     }
   </body>
+</head>
+<body>
+
+
+
+
+
+
+<section id="contact" class="contact-form">
+  <h2>Contact Us</h2>
+  <form id="contactForm" action="https://formsubmit.co/snehanv777@gmail.com" method="POST" enctype="multipart/form-data" onsubmit="submitForm(event)">
+    
+    <label for="name">Your Name</label>
+    <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+    <label for="email">Your Email</label>
+    <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+    <label for="message">Your Message</label>
+    <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+
+    <!-- Drag and Drop Upload -->
+    <label>Upload File</label>
+    <div id="drop-area">
+      <p>Drag & drop your file here or click to upload</p>
+      <input type="file" id="fileInput" name="attachment" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.zip,.txt" hidden>
+    </div>
+    <div id="file-preview"></div>
+    <div id="progressBarContainer">
+      <div id="progressBar"></div>
+    </div>
+
+    <!-- Redirect -->
+    <input type="hidden" name="_next" value="thankyou.html">
+
+    <button type="submit">Send Message</button>
+  </form>
+
+  <div id="thankYouMessage" style="display:none; margin-top: 10px; color: green;">
+    Thank you for submitting!
+  </div>
+
+  <style>
+    #drop-area {
+      border: 2px dashed #aaa;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      margin-bottom: 10px;
+      transition: 0.3s ease;
+    }
+
+    #drop-area.dragover {
+      background-color: #f0f8ff;
+      border-color: #007bff;
+    }
+
+    #file-preview {
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    #progressBarContainer {
+      width: 100%;
+      height: 10px;
+      background: #eee;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 15px;
+      display: none;
+    }
+
+    #progressBar {
+      height: 100%;
+      width: 0%;
+      background: #28a745;
+      transition: width 0.4s ease;
+    }
+  </style>
+
+  <script>
+    const dropArea = document.getElementById('drop-area');
+    const fileInput = document.getElementById('fileInput');
+    const filePreview = document.getElementById('file-preview');
+    const progressBarContainer = document.getElementById('progressBarContainer');
+    const progressBar = document.getElementById('progressBar');
+
+    dropArea.addEventListener('click', () => fileInput.click());
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropArea.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropArea.classList.add('dragover');
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropArea.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropArea.classList.remove('dragover');
+      });
+    });
+
+    dropArea.addEventListener('drop', (e) => {
+      const files = e.dataTransfer.files;
+      if (files.length > 0) {
+        fileInput.files = files;
+        showPreview(files[0]);
+      }
+    });
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files.length > 0) {
+        showPreview(fileInput.files[0]);
+      }
+    });
+
+    function showPreview(file) {
+      filePreview.textContent = `Selected: ${file.name} (${Math.round(file.size / 1024)} KB)`;
+    }
+
+    function animateProgressBar() {
+      progressBarContainer.style.display = 'block';
+      let width = 0;
+      const interval = setInterval(() => {
+        if (width >= 100) {
+          clearInterval(interval);
+        } else {
+          width += 10;
+          progressBar.style.width = width + '%';
+        }
+      }, 100);
+    }
+
+    function submitForm(event) {
+      event.preventDefault();
+      animateProgressBar();
+
+      setTimeout(() => {
+        document.getElementById("contactForm").submit(); // manual submission
+        document.getElementById("contactForm").style.display = "none";
+        document.getElementById("thankYouMessage").style.display = "block";
+      }, 1200); // Give progress bar time to animate
+    }
+  </script>
+</section>
+
+
 </html>
 </script>
+</form>
 </body>
 </html>
