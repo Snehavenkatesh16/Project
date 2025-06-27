@@ -378,40 +378,58 @@
     icon.textContent = isOpen ? '➖' : '➕';
   }
 </script>
+ <section>
+ <h2>Contact Us</h2>
+  
+  <form id="contact-form" action="https://formsubmit.co/snehanv777@gmail.com" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required><br><br>
+    <input type="email" name="email" placeholder="Your Email" required><br><br>
+    <textarea name="message" placeholder="Your Message" rows="5" required></textarea><br><br>
 
- <section id="contact" class="contact-form">
-  <h2>Contact Us</h2>
-  <form action="https://formsubmit.co/snehanv777@gmail.com" method="POST"></form>
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-    <button type="submit">Send Message</button method="POST">
+    <!-- Optional FormSubmit settings -->
+    <input type="hidden" name="_captcha" value="false">
+
+    <button type="submit">Send</button>
   </form>
-</section>
 
-      <label for="email">Your Email</label>
-      <input type="email" id="email" name="email" placeholder="Your Email" required="">
+  <div id="thank-you-msg">
+    <h2>🎉 Thank you for submitting!</h2>
+    <p>We have received your message.</p>
+  </div>
 
-      <label for="message">Your Message</label>
-      <textarea id="message" name="message" rows="5" placeholder="Your Message" required=""></textarea>
- <!-- Redirect after submission -->
-  <input type="hidden" name="_next" value="thankyou.html" method="POST">
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault(); // Stop default form action
+      const form = this;
 
-      <button type="submit">Send Message</button> method="POST"
-    </form>
-<div id="thankYouMessage" style="display:none; margin-top: 10px; color: green;">
-  Thank you for submitting!
-</div>
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+      }).then(response => {
+        if (response.ok) {
+          form.style.display = "none";
+          document.getElementById('thank-you-msg').style.display = "block";
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      }).catch(error => {
+        console.error(error);
+        alert("Error submitting form.");
+      });
+    });
+  </script>
+
+</body>
+</html>
 
 <script>
   function submitForm(event) {
     event.preventDefault(); // Prevent actual form submission
-    document.getElementById("contactForm").style.display = "none";
+    document.getElementById("contactForm").style.display = "none" method="POST";
     document.getElementById("thankYouMessage").style.display = "block";
   }
 </script>
   </section>
-
 
   <script>
     // Animated counter
