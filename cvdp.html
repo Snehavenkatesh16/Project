@@ -415,6 +415,7 @@
   }
 </script>
   </section>
+    </div>
 
 
   <script>
@@ -443,41 +444,7 @@
 
 
 
-<section id="contact" class="contact-form">
-  <h2>Contact Us</h2>
-  <form id="contactForm" action="https://formsubmit.co/snehanv777@gmail.com" method="POST" enctype="multipart/form-data" onsubmit="submitForm(event)">
-    
-    <label for="name">Your Name</label>
-    <input type="text" id="name" name="name" placeholder="Your Name" required>
-
-    <label for="email">Your Email</label>
-    <input type="email" id="email" name="email" placeholder="Your Email" required>
-
-    <label for="message">Your Message</label>
-    <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-
-    <!-- Drag and Drop Upload -->
-    <label>Upload File</label>
-    <div id="drop-area">
-      <p>Drag & drop your file here or click to upload</p>
-      <input type="file" id="fileInput" name="attachment" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.zip,.txt" hidden>
-    </div>
-    <div id="file-preview"></div>
-    <div id="progressBarContainer">
-      <div id="progressBar"></div>
-    </div>
-
-    <!-- Redirect -->
-    <input type="hidden" name="_next" value="thankyou.html">
-
-    <button type="submit">Send Message</button>
-  </form>
-
-  <div id="thankYouMessage" style="display:none; margin-top: 10px; color: green;">
-    Thank you for submitting!
-  </div>
-
-  <style>
+      <style>
     #drop-area {
       border: 2px dashed #aaa;
       border-radius: 10px;
@@ -586,8 +553,6 @@
   </script>
 </section>
 
-
-</html>
 </script>
 </form>
 </body>
