@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0068)https:///C:/Users/Chaithanya%20N%20V/Desktop/Sneha-project/index.html -->
+<!-- saved from url=(0068)file:///C:/Users/Chaithanya%20N%20V/Desktop/Sneha-project/index.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -395,44 +395,21 @@
 
     <label for="file">Upload File</label>
     <input type="file" id="file" name="attachment">
-    <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY_HERE"></div
-
-    <!-- Redirect after submission -->
-    <input type="hidden" name="_next" value="https://snehavenkatesh16.github.io/Project">
+    <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY_HERE"data-callback="captchaPasses"></div
+    </form>
+    <input type="hidden" name="_next" value="thankyou.html">
         <button type="submit">Send Message</button>
   </form>
-
-  <div id="thankYouMessage" style="display:none; margin-top: 10px; color: green;">
-    Thank you for submitting!
-  </div>
 </section>
 
 <script>
   function submitForm(event) {
-    event.preventDefault(); // Prevent actual form submission
+    //event.preventDefault(); // Prevent actual form submission
     document.getElementById("contactForm").style.display = "none" method="POST";
     document.getElementById("thankYouMessage").style.display = "block";
   }
 </script>
  </head>
-
-  <script>
-    // Animated counter
-    let count = 0;
-    const counter = document.getElementById('userCount');
-    const interval = setInterval(() => {
-      count += Math.floor(Math.random() * 5) + 1;
-      counter.textContent = count.toLocaleString();
-      if (count >= 5000) clearInterval(interval);
-    }, 100);
-
-    // FAQ toggle
-    function toggleFaq(index) {
-      const answers = document.querySelectorAll(".faq p");
-      const isVisible = answers[index].style.display === "block";
-      answers.forEach(p => (p.style.display = "none"));
-      if (!isVisible) answers[index].style.display = "block";
-    }
   </body>
 </head>
 <body>
